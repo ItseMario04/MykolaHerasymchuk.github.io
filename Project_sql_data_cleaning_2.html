@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Data Cleaning SQL Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/vs2015.min.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home Page</a></li>
+
+							<li>
+								<span class="opener" role="button" tabindex="0" aria-expanded="false">Projects Page</span>
+								<ul class="submenu">
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Python + Tableau</span>
+										<ul class="submenu">
+											<li><a href="Project_python_tableau_london.html">London Bike-Sharing Analysis</a></li>
+											<li><a href="Project_python_tableau_valencia.html">Valencia Real Estate Analytics</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">SQL</span>
+										<ul class="submenu">
+											<li><a href="Project_sql_sales_funnel.html">Sales Funnel Analysis</a></li>
+											<li><a href="Project_sql_data_cleaning_1.html">Data Cleaning SQL</a></li>
+											<li><a href="Project_sql_data_cleaning_2.html">Data Cleaning SQL</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Excel</span>
+										<ul class="submenu">
+											<li><a href="Project_excel_dashboard_1.html">Excel Dashboard</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">IDA</span>
+										<ul class="submenu">
+											<li><a href="Project_IDA_1.html">IDA ML Models</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Data Scraping</span>
+										<ul class="submenu">
+											<li><a href="Project_data_scraping_wikipedia.html">Data Scraping Wikipedia</a></li>
+											<li><a href="Project_data_scraping_crypto.html">Data Scraping Cryptocurrency</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							
+							<!-- <li class="active"><a href="generic.html">Project Page</a></li> -->
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+							<li><a href="Resume.html">Resume</a></li>
+						</ul>
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> 
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+							<li><a href="https://www.linkedin.com/in/mykola-herasymchuk-5783b026b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/ItseMario04?tab=projects" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">August 24, 2026</span>
+									<h1>Data cleaning with MySQL</h1>
+									<!--<p>Aenean ornare velit </p> -->
+								</header>
+								<!-- Blockquote -->
+								<h2>Project Overview</h2>
+								<blockquote>
+									<p>Data cleaning is very important process that is used by data scientists, data engineers, but also data analyst. I`m going to perform various data cleaning operations, such as removing duplicates, handling missing values, and standardizing formats so that should be a good example for real life application.</p>
+								</blockquote>
+								<hr />
+								<h2>MySQL </h2>
+									<p>For this task, I used MySQL Workbench, although I am also proficient in Google BigQuery, as demonstrated by the examples in the code. Raw data <code>layoffs.csv</code> and <code>layoffs_Data_cleaning.sql</code> files could be found in this <a href="https://github.com/ItseMario04/SQL-Projects/tree/1114bc8bccea3bb20e813f261ceb67a91cbf3507/SQL%20Projects/Data%20Cleaning">GitHub repository</a>.</p>	
+									<p>For convenience—so I wouldn't have to specify the full path to the required table within the schema every time—I worked exclusively within the schema I had created, although the full path would generally look like this: <code>layoffs.layoffs</code>.</p>
+                                        
+										<pre><code class="language-sql">-- Data Cleaning
+
+SELECT * 
+FROM layoffs;
+
+-- 1. Remove Duplicates
+-- 2. Standardize the Data
+-- 3. Null Values or blank values
+-- 4. Remove any columns
+
+CREATE TABLE layoffs_staging
+LIKE layoffs;
+
+SELECT * 
+FROM layoffs_staging;
+
+INSERT layoffs_staging
+SELECT * 
+FROM layoffs;
+--
+SELECT *, 
+ROW_NUMBER() OVER(
+PARTITION BY company, industry, total_laid_off, percentage_laid_off, `date`) AS row_num
+FROM layoffs_staging;
+
+WITH duplicate_cte AS
+(
+SELECT *, 
+ROW_NUMBER() OVER(
+PARTITION BY company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions) AS row_num
+FROM layoffs_staging
+)
+SELECT *
+FROM duplicate_cte
+WHERE row_num > 1;
+
+SELECT * 
+FROM layoffs_staging
+WHERE company LIKE 'casper'
+;
+
+WITH duplicate_cte AS
+(
+SELECT *, 
+ROW_NUMBER() OVER(
+PARTITION BY company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions) AS row_num
+FROM layoffs_staging
+)
+DELETE
+FROM duplicate_cte
+WHERE row_num > 1;
+
+CREATE TABLE `layoffs_staging2` (
+  `company` text,
+  `location` text,
+  `industry` text,
+  `total_laid_off` int DEFAULT NULL,
+  `percentage_laid_off` text,
+  `date` text,
+  `stage` text,
+  `country` text,
+  `funds_raised_millions` int DEFAULT NULL,
+  `row_num` INT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+SELECT *
+FROM layoffs_staging2
+WHERE row_num > 1;
+
+INSERT INTO layoffs_staging2
+SELECT *, 
+ROW_NUMBER() OVER(
+PARTITION BY company, location, industry, total_laid_off, percentage_laid_off, `date`, stage, country, funds_raised_millions) AS row_num
+FROM layoffs_staging;
+
+DELETE
+FROM layoffs_staging2
+WHERE row_num > 1;
+
+SELECT *
+FROM layoffs_staging2
+WHERE row_num > 1;
+
+SELECT *
+FROM layoffs_staging2;
+
+-- Standardize the Data
+
+SELECT company, TRIM(company)
+FROM layoffs_staging2;
+UPDATE layoffs_staging2
+SET company = TRIM(company);
+
+SELECT DISTINCT(industry)
+FROM layoffs_staging2
+ORDER BY 1;
+
+SELECT *
+FROM layoffs_staging2
+WHERE industry LIKE '%cryp%';
+
+UPDATE layoffs_staging2
+SET industry = 'Crypto'
+WHERE industry LIKE '%cryp%';
+
+SELECT DISTINCT(location)
+FROM layoffs_staging2
+ORDER BY 1;
+
+SELECT DISTINCT(country)
+FROM layoffs_staging2
+WHERE country LIKE "United States%";
+
+SELECT DISTINCT(country), TRIM(TRAILING '.' FROM country)
+FROM layoffs_staging2
+ORDER BY 1;
+
+UPDATE layoffs_staging2
+SET country = TRIM(TRAILING '.' FROM country)
+WHERE country LIKE "United States%";
+
+SELECT `date`, 
+STR_TO_DATE(`date`, '%m/%d/%Y')
+FROM layoffs_staging2;
+
+UPDATE layoffs_staging2
+SET `date` = STR_TO_DATE(`date`, '%m/%d/%Y');
+
+ALTER TABLE layoffs_staging2
+MODIFY COLUMN `date` DATE; 
+
+-- Null Values or blank values
+
+SELECT *
+FROM layoffs_staging2
+WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
+
+UPDATE layoffs_staging2
+SET industry = NULL
+WHERE industry = '';
+
+SELECT *
+FROM layoffs_staging2
+WHERE industry IS NULL OR industry = '';
+
+SELECT *
+FROM layoffs_staging2
+WHERE company = 'Airbnb';
+
+SELECT t1.industry, t2.industry
+FROM layoffs_staging2 AS t1
+JOIN layoffs_staging2 AS t2
+	ON t1.company = t2.company
+    AND t1.location = t2.location
+WHERE (t1.industry IS NULL) AND t2.industry IS NOT NULL;
+
+UPDATE layoffs_staging2 AS t1
+JOIN layoffs_staging2 AS t2
+	ON t1.company = t2.company
+SET t1.industry = t2.industry 
+WHERE (t1.industry IS NULL) AND t2.industry IS NOT NULL;
+
+SELECT *
+FROM layoffs_staging2
+WHERE company = "Bally's Interactive";
+
+-- Remove any columns
+
+SELECT *
+FROM layoffs_staging2
+WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
+
+
+DELETE 
+FROM layoffs_staging2
+WHERE total_laid_off IS NULL AND percentage_laid_off IS NULL;
+
+SELECT *
+FROM layoffs_staging2;
+
+ALTER TABLE layoffs_staging2
+DROP COLUMN row_num;
+										</code></pre>
+									<hr />	
+								<h2>Conclusion</h2>	
+									<p>A staging table was created to preserve the original data, after which duplicate records were identified and removed using the <code>ROW_NUMBER()</code> window function with <code>PARTITION BY</code>.</p>
+									<p>The data was then standardized using functions such as <code>TRIM()</code>, <code>STR_TO_DATE()</code>, and pattern matching with <code>LIKE</code>. Inconsistent industry and country values were corrected, while date values were converted to the appropriate <code>DATE</code> data type. Missing and blank values were also addressed: empty strings were converted to <code>NULL</code>, and missing industry values were populated by joining records with matching company and location information. Finally, records without both <code>total_laid_off</code> and <code>percentage_laid_off</code> were removed, and the temporary <code>row_num</code> column was dropped.</p>			
+
+							</section>
+                           
+                            <!-- Footer -->
+							<footer>
+								<div class="pagination">
+									<a href="#" class="previous">Prev</a>
+									<a href="#" class="page active">1</a>
+									<a href="#" class="page">2</a>
+									<a href="#" class="page">3</a>
+									<span class="extra">&hellip;</span>
+									<a href="#" class="page">8</a>
+									<a href="#" class="page">9</a>
+									<a href="#" class="page">10</a>
+									<a href="#" class="next">Next</a>
+								</div>
+							</footer>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>вулиця Святошинська, 1, <br />
+									Київ, 03115</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="tel:+380671011875">(+380)67-101-1875</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:ikola2211@gmail.com">ikola2211@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<!--<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+									<li><a href="https://www.linkedin.com/in/ikola2211/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/ikola2211" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Herasymchuk</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+			<script>hljs.highlightAll();</script>
+
+	</body>
+</html>

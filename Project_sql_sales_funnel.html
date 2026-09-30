@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>SQL Funnel Analysis</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/vs2015.min.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home Page</a></li>
+
+							<li>
+								<span class="opener" role="button" tabindex="0" aria-expanded="false">Projects Page</span>
+								<ul class="submenu">
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Python + Tableau</span>
+										<ul class="submenu">
+											<li><a href="Project_python_tableau_london.html">London Bike-Sharing Analysis</a></li>
+											<li><a href="Project_python_tableau_valencia.html">Valencia Real Estate Analytics</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">SQL</span>
+										<ul class="submenu">
+											<li><a href="Project_sql_sales_funnel.html">Sales Funnel Analysis</a></li>
+											<li><a href="Project_sql_data_cleaning_1.html">Data Cleaning SQL</a></li>
+											<li><a href="Project_sql_data_cleaning_2.html">Data Cleaning SQL</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Excel</span>
+										<ul class="submenu">
+											<li><a href="Project_excel_dashboard_1.html">Excel Dashboard</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">IDA</span>
+										<ul class="submenu">
+											<li><a href="Project_IDA_1.html">IDA ML Models</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Data Scraping</span>
+										<ul class="submenu">
+											<li><a href="Project_data_scraping_wikipedia.html">Data Scraping Wikipedia</a></li>
+											<li><a href="Project_data_scraping_crypto.html">Data Scraping Cryptocurrency</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							
+							<!-- <li class="active"><a href="generic.html">Project Page</a></li> -->
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+							<li><a href="Resume.html">Resume</a></li>
+						</ul>
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> 
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+							<li><a href="https://www.linkedin.com/in/mykola-herasymchuk-5783b026b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/ItseMario04?tab=projects" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">September 12, 2026</span>
+									<h1>MySQL Sales Funnel Analysis</h1>
+									<!--<p>Aenean ornare velit </p> -->
+								</header>
+								<!-- Blockquote -->
+                                <h2>Project Assignment</h2>
+									<blockquote>Perform a Sales Funnel Analysis for the e-commerce domain using MySQL and formulate actionable business recommendations for the sales team</blockquote>
+                                <hr />
+                                <h2>Project Goal and Value</h2>	
+                                    <p>This project is built around a real-world e-commerce business scenario to showcase practical MySQL skills and a business-analyst mindset. Its primary goal is to demonstrate the ability to translate raw sales funnel data into actionable recommendations that optimize sales team operations.</p>
+                                    <hr />
+                                <h2>MySQL </h2>
+									<p>For this task, I used MySQL Workbench, although I am also capable of completing it in Google BigQuery. Raw data <code>user_events.csv</code> and <code>user_events.sql</code> files could be found in this <a href="https://github.com/ItseMario04/SQL-Projects/tree/1114bc8bccea3bb20e813f261ceb67a91cbf3507/SQL%20Projects">GitHub repository</a>.</p>	
+									<p>For convenience—so I wouldn't have to specify the full path to the required table within the schema every time—I worked exclusively within the schema I had created, although the full path would generally look like this: <code>user_events.user_events</code>.</p>
+                                        <pre><code class="language-sql">SELECT *
+FROM user_events
+LIMIT 20;
+
+-- define sales funnel and the different stages
+
+WITH funnel_stages AS (
+	SELECT
+        COUNT(DISTINCT CASE WHEN event_type = 'page_view' THEN user_id END) AS stage_1_views,
+        COUNT(DISTINCT CASE WHEN event_type = 'add_to_cart' THEN user_id END) AS stage_2_cart,
+        COUNT(DISTINCT CASE WHEN event_type = 'checkout_start' THEN user_id END) AS stage_3_checkout,
+        COUNT(DISTINCT CASE WHEN event_type = 'payment_info' THEN user_id END) AS stage_4_payment,
+        COUNT(DISTINCT CASE WHEN event_type = 'purchase' THEN user_id END) AS stage_5_purchase
+	FROM user_events
+    -- WHERE event_date >= TIMESTAMP(DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)) 
+)
+SELECT * 
+FROM funnel_stages;
+
+-- conversion rates through the funnel
+
+WITH funnel_stages AS (
+	SELECT 
+	COUNT(DISTINCT CASE WHEN event_type = 'page_view' THEN user_id END) AS stage_1_views,
+        COUNT(DISTINCT CASE WHEN event_type = 'add_to_cart' THEN user_id END) AS stage_2_cart,
+        COUNT(DISTINCT CASE WHEN event_type = 'checkout_start' THEN user_id END) AS stage_3_checkout,
+        COUNT(DISTINCT CASE WHEN event_type = 'payment_info' THEN user_id END) AS stage_4_payment,
+        COUNT(DISTINCT CASE WHEN event_type = 'purchase' THEN user_id END) AS stage_5_purchase
+	FROM user_events
+    -- WHERE event_date >= TIMESTAMP(DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)) 
+)
+SELECT  
+	stage_1_views,
+    stage_2_cart,
+    ROUND(stage_2_cart * 100 / stage_1_views, 1) AS cart_to_views_ratio,
+    
+    stage_3_checkout,
+	ROUND(stage_3_checkout * 100 / stage_2_cart, 1) AS checkout_to_cart_ratio,
+    
+    stage_4_payment,
+	ROUND(stage_4_payment * 100 / stage_3_checkout, 1) AS payment_to_checkout_ratio,
+    
+    stage_5_purchase,
+	ROUND(stage_5_purchase * 100 / stage_4_payment, 1) AS purchase_to_payment_ratio,
+	ROUND(stage_5_purchase * 100 / stage_1_views, 1) AS purchase_to_view_ratio
+
+FROM funnel_stages;
+
+-- funnel by source
+
+WITH source_funnel AS(
+	SELECT
+	traffic_source,
+	COUNT(DISTINCT CASE WHEN event_type = 'page_view' THEN user_id END) AS views,
+	COUNT(DISTINCT CASE WHEN event_type = 'add_to_cart' THEN user_id END) AS carts,
+	COUNT(DISTINCT CASE WHEN event_type = 'purchase' THEN user_id END) AS purchases
+FROM user_events
+GROUP BY traffic_source
+)
+SELECT traffic_source, views, carts, purchases,
+ROUND(carts * 100 / views, 1) AS carts_to_views_ratio,
+ROUND(purchases * 100 / views, 1) AS purchases_to_views_ratio,
+ROUND(purchases * 100 / carts, 1) AS purchases_to_carts_ratio
+
+FROM source_funnel
+ORDER BY purchases DESC;
+
+
+-- time to conversion analysis
+
+WITH user_journey AS(
+	SELECT
+	user_id,
+	MIN(CASE WHEN event_type = 'page_view' THEN event_date END) AS views_time,
+	MIN(CASE WHEN event_type = 'add_to_cart' THEN event_date END) AS carts_time,
+	MIN(CASE WHEN event_type = 'purchase' THEN event_date END) AS purchases_time
+FROM user_events
+GROUP BY user_id
+HAVING MIN(CASE WHEN event_type = 'purchase' THEN event_date END) IS NOT NULL
+)
+SELECT 
+	COUNT(*) AS converted_users,
+	ROUND(AVG(TIMESTAMPDIFF(MINUTE, views_time, carts_time)),2) AS avg_view_to_cart_minutes,
+	ROUND(AVG(TIMESTAMPDIFF(MINUTE, carts_time, purchases_time)),2) AS avg_cart_to_purchases_minutes,
+    ROUND(AVG(TIMESTAMPDIFF(MINUTE, views_time, purchases_time)),2) AS avg_purchases_to_views_minutes
+FROM user_journey;
+
+-- revenue funnel analysis
+
+WITH funnel_revenue AS(
+	SELECT
+	COUNT(DISTINCT CASE WHEN event_type = 'page_view' THEN user_id END) AS total_visitors,
+    COUNT(DISTINCT CASE WHEN event_type = 'purchase' THEN user_id END) AS total_buyers,
+    SUM(CASE WHEN event_type = 'purchase' THEN amount END) AS total_revenue,
+	COUNT(CASE WHEN event_type = 'purchase' THEN 1 END) AS total_orders
+FROM user_events
+)
+SELECT total_visitors, total_buyers, ROUND(total_revenue,2), total_orders,
+ROUND(total_revenue / total_orders,2) AS avg_order_value,
+ROUND(total_revenue / total_buyers,2) AS revenue_per_buyer,
+ROUND(total_revenue / total_visitors,2) AS revenue_per_visitor
+FROM funnel_revenue
+                                    </code></pre>  
+                            <h2>Conclusions and Recommendations</h2>
+                                <dl>
+									<dt>UX & Website Optimization</dt>
+										<dd>
+                                            <ul>
+												<li><b>Don't Touch the Checkout Flow</b>: The conversion rates from Checkout Start to Purchase are excellent (~80%+). This indicates the technical payment flow is frictionless.</li>
+												<li>Action: Do not redesign the checkout page right now; you risk breaking something that is working perfectly.</li>
+												
+											</ul>
+										</dd>
+									<dt>Marketing Strategies</dt>
+										<dd>
+                                            <ul>
+												<li><b>Stop Over-Investing in Social for Sales</b>: Social Media is driving 30% of our traffic (Volume) but has the lowest conversion rate (Efficiency). We are likely paying for "window shoppers".</li>
+												<li>Action: Shift budget away from "Traffic" objectives on social ads and focus on "Retargeting" or "Lead Gen" to capture emails instead.</li>
+												<li><b>Double Down on Email Marketing</b>: Email is our highest converting channel (~13%+ conversion rate vs ~6% for Social).</li>
+												<li>Action: Implement an aggressive email capture popup for those high-volume Social visitors. If we can get them onto our email list, our data proves they are far more likely to buy later.</li>
+											</ul>
+										</dd>
+									<dt>Financial & Revenue</dt>
+										<dd>
+                                            <ul>
+												<li><b>Audit Ad Spend against AOV</b>: We found our Average Order Value is ~$115.</li>
+												<li>Action: Set a strict Customer Acquisition Cost (CAC) limit. If we are paying more than $30-$40 to acquire a customer via Social Media ads (which convert poorly), we are likely losing money on those specific transactions.</li>
+												
+											</ul>
+										</dd>
+								</dl>
+
+							</section>
+                           
+                            <!-- Footer -->
+							<footer>
+								<div class="pagination">
+									<a href="#" class="previous">Prev</a>
+									<a href="#" class="page active">1</a>
+									<a href="#" class="page">2</a>
+									<a href="#" class="page">3</a>
+									<span class="extra">&hellip;</span>
+									<a href="#" class="page">8</a>
+									<a href="#" class="page">9</a>
+									<a href="#" class="page">10</a>
+									<a href="#" class="next">Next</a>
+								</div>
+							</footer>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>вулиця Святошинська, 1, <br />
+									Київ, 03115</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="tel:+380671011875">(+380)67-101-1875</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:ikola2211@gmail.com">ikola2211@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<!--<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+									<li><a href="https://www.linkedin.com/in/ikola2211/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/ikola2211" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Herasymchuk</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+			<script>hljs.highlightAll();</script>
+
+	</body>
+</html>

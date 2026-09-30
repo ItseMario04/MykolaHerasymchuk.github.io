@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Data Cleaning SQL Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/vs2015.min.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home Page</a></li>
+
+							<li>
+								<span class="opener" role="button" tabindex="0" aria-expanded="false">Projects Page</span>
+								<ul class="submenu">
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Python + Tableau</span>
+										<ul class="submenu">
+											<li><a href="Project_python_tableau_london.html">London Bike-Sharing Analysis</a></li>
+											<li><a href="Project_python_tableau_valencia.html">Valencia Real Estate Analytics</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">SQL</span>
+										<ul class="submenu">
+											<li><a href="Project_sql_sales_funnel.html">Sales Funnel Analysis</a></li>
+											<li><a href="Project_sql_data_cleaning_1.html">Data Cleaning SQL</a></li>
+											<li><a href="Project_sql_data_cleaning_2.html">Data Cleaning SQL</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Excel</span>
+										<ul class="submenu">
+											<li><a href="Project_excel_dashboard_1.html">Excel Dashboard</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">IDA</span>
+										<ul class="submenu">
+											<li><a href="Project_IDA_1.html">IDA ML Models</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Data Scraping</span>
+										<ul class="submenu">
+											<li><a href="Project_data_scraping_wikipedia.html">Data Scraping Wikipedia</a></li>
+											<li><a href="Project_data_scraping_crypto.html">Data Scraping Cryptocurrency</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							
+							<!-- <li class="active"><a href="generic.html">Project Page</a></li> -->
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+							<li><a href="Resume.html">Resume</a></li>
+						</ul>
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> 
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+							<li><a href="https://www.linkedin.com/in/mykola-herasymchuk-5783b026b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/ItseMario04?tab=projects" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">September 15, 2026</span>
+									<h1>Data cleaning with MySQL</h1>
+									<!--<p>Aenean ornare velit </p> -->
+								</header>
+								<!-- Blockquote -->
+								<h2>Project Overview</h2>
+								<blockquote>
+									<p>Data cleaning is very important process that is used by data scientists, data engineers, but also data analyst. I`m going to perform various data cleaning operations, such as removing duplicates, handling missing values, and standardizing formats so that should be a good example for real life application.</p>
+								</blockquote>
+								<hr />
+								<h2>MySQL </h2>
+									<p>For this task, I used MySQL Workbench, although I am also proficient in Google BigQuery, as demonstrated by the examples in the code. Raw data <code>dirty_shipments.csv</code> and <code>shipments.sql</code> files could be found in this <a href="https://github.com/ItseMario04/SQL-Projects/tree/1114bc8bccea3bb20e813f261ceb67a91cbf3507/SQL%20Projects/Data%20Cleaning">GitHub repository</a>.</p>	
+									<p>For convenience—so I wouldn't have to specify the full path to the required table within the schema every time—I worked exclusively within the schema I had created, although the full path would generally look like this: <code>shipments.dirty_shipments</code>.</p>
+                                        <pre><code class="language-sql">SELECT * 
+FROM dirty_shipments;
+
+CREATE TABLE shipments
+LIKE dirty_shipments;
+
+SELECT * 
+FROM shipments
+LIMIT 500;
+
+INSERT shipments
+SELECT * 
+FROM dirty_shipments;
+--
+-- 1. Remove Duplicates
+-- 2. Standardize the Data
+-- 3. Null Values or blank values
+-- 4. Remove any columns
+WITH duplicate_cte AS
+(
+SELECT *, 
+ROW_NUMBER() OVER(
+PARTITION BY shipment_id, origin_warehouse, destination_city, destination_state, carrier, ship_date, delivery_date, weight_kg, freight_cost, shipment_status, items_count, damage_reported) AS row_num
+FROM shipments
+)
+SELECT *
+FROM duplicate_cte
+WHERE row_num > 1;
+
+-- There isn`t any duplicates
+-- 2. Standardize the Data
+
+SELECT shipment_id,
+TRIM(origin_warehouse), TRIM(destination_city), TRIM(destination_state), TRIM(carrier)
+FROM shipments;
+UPDATE shipments
+SET shipment_id = TRIM(shipment_id),
+origin_warehouse = TRIM(origin_warehouse),
+destination_city = TRIM(destination_city),
+destination_state = TRIM(destination_state),
+carrier = TRIM(carrier);
+
+-- in Google BigQuery we could use INICAP() for making all first letters uppercase
+SELECT shipment_id,
+UPPER(destination_state)
+FROM shipments;
+UPDATE shipments
+SET destination_state = UPPER(destination_state);
+
+SELECT CONCAT(
+    UPPER(SUBSTRING(SUBSTRING_INDEX(origin_warehouse, ' ', 1), 1, 1)),
+    LOWER(SUBSTRING(SUBSTRING_INDEX(origin_warehouse, ' ', 1), 2)),
+    ' ',
+    UPPER(SUBSTRING(SUBSTRING_INDEX(origin_warehouse, ' ', -1), 1, 1)),
+    LOWER(SUBSTRING(SUBSTRING_INDEX(origin_warehouse, ' ', -1), 2))
+) AS origin_warehouse
+FROM shipments;
+UPDATE shipments
+SET origin_warehouse = CONCAT(
+    UPPER(SUBSTRING(SUBSTRING_INDEX(origin_warehouse, ' ', 1), 1, 1)),
+    LOWER(SUBSTRING(SUBSTRING_INDEX(origin_warehouse, ' ', 1), 2)),
+    ' ',
+    UPPER(SUBSTRING(SUBSTRING_INDEX(origin_warehouse, ' ', -1), 1, 1)),
+    LOWER(SUBSTRING(SUBSTRING_INDEX(origin_warehouse, ' ', -1), 2))
+);
+
+SELECT 
+    destination_city AS original_text,
+    CONCAT(UPPER(SUBSTRING(destination_city, 1, 1)), REGEXP_REPLACE(SUBSTRING(destination_city, 2), '([[:space:]]_---,.)([[:alnum:]])', '$1')) AS formatted_text
+FROM shipments;
+UPDATE shipments
+SET destination_city = CONCAT(
+	UPPER(SUBSTRING(destination_city, 1, 1)),
+        REGEXP_REPLACE(SUBSTRING(destination_city, 2),
+            '([[:space:]]_---,.)([[:alnum:]])',
+            '$1')
+);
+
+SELECT 
+    carrier AS original_text,
+    CONCAT(UPPER(SUBSTRING(carrier, 1, 1)), LOWER(SUBSTRING(carrier, 2))) AS formatted_text
+FROM shipments;
+UPDATE shipments
+SET carrier = CONCAT(UPPER(SUBSTRING(carrier, 1, 1)), LOWER(SUBSTRING(carrier, 2)));
+
+SELECT 
+    shipment_status AS original_text,
+    CONCAT(UPPER(SUBSTRING(shipment_status, 1, 1)), LOWER(SUBSTRING(shipment_status, 2))) AS formatted_text1
+   -- CONCAT(UPPER(SUBSTRING(shipment_status, 1, 1)), REGEXP_REPLACE(SUBSTRING(shipment_status, 2), '([[:space:]]_---,.)([[:alnum:]])', '$1')) AS formatted_text2
+FROM shipments;
+UPDATE shipments
+SET shipment_status = CONCAT(UPPER(SUBSTRING(shipment_status, 1, 1)), LOWER(SUBSTRING(shipment_status, 2)));
+
+-- 3. Null Values or blank values
+
+SELECT shipment_id,
+CASE
+	WHEN damage_reported = 'NULL' OR damage_reported IS NULL OR damage_reported = '' THEN NULL
+    ELSE CONCAT(UPPER(SUBSTRING(damage_reported, 1, 1)), LOWER(SUBSTRING(damage_reported, 2)))
+END AS damage_reported,
+COALESCE(NULLIF(destination_city, ''), 'Unknown') AS destination_city,
+COALESCE(NULLIF(delivery_date, ''), 'Not Yet Delivered') AS delivery_date
+FROM shipments;
+----
+UPDATE shipments
+SET destination_city = COALESCE(NULLIF(destination_city, ''), 'Unknown'), 
+delivery_date = COALESCE(NULLIF(delivery_date, ''), 'Not Yet Delivered'),
+damage_reported = CONCAT(UPPER(SUBSTRING(damage_reported, 1, 1)), LOWER(SUBSTRING(damage_reported, 2)));
+----
+-- Fix Negative & Suspicius Numeric Value
+
+SELECT shipment_id,
+CASE
+	WHEN weight_kg < 0 THEN ABS(weight_kg)
+    WHEN weight_kg = 0 THEN NULL
+    ELSE weight_kg
+END AS weight_kg_cleaned,
+CASE
+	WHEN freight_cost < 0 THEN ABS(freight_cost)
+    WHEN freight_cost = 0 THEN NULL
+    ELSE freight_cost
+END AS freight_cost_cleaned,
+CASE
+	WHEN items_count < 0 THEN ABS(items_count)
+    WHEN items_count = 0 THEN NULL
+    ELSE items_count
+END AS items_count_cleaned
+FROM shipments;
+-----
+UPDATE shipments
+SET 
+    weight_kg = CASE
+        WHEN weight_kg < 0 THEN ABS(weight_kg)
+        WHEN weight_kg = 0 THEN NULL
+        ELSE weight_kg
+    END,
+    
+    freight_cost = CASE
+        WHEN freight_cost < 0 THEN ABS(freight_cost)
+        WHEN freight_cost = 0 THEN NULL
+        ELSE freight_cost
+    END,
+    
+    items_count = CASE
+        WHEN items_count < 0 THEN ABS(items_count)
+        WHEN items_count = 0 THEN NULL
+        ELSE items_count
+    END;
+-----
+-- ================== Validate Date Logic ============================
+-- for google bigQuery: DATEDIFF(SAFE.PARSE_DATE('%Y-%m-%d', delivery_date), SAFE.PARSE_DATE('%Y-%m-%d', ship_date), DAY)
+ 
+SELECT shipment_id, ship_date, delivery_date,
+DATEDIFF(
+	STR_TO_DATE(NULLIF(delivery_date, ''), '%Y-%m-%d'),
+	STR_TO_DATE(NULLIF(ship_date, ''), '%Y-%m-%d')
+    )
+AS transit_days,
+
+CASE
+	WHEN STR_TO_DATE(NULLIF(delivery_date, ''), '%Y-%m-%d') < STR_TO_DATE(NULLIF(ship_date, ''), '%Y-%m-%d') THEN 'INVALID'
+    WHEN STR_TO_DATE(NULLIF(delivery_date, ''), '%Y-%m-%d') = STR_TO_DATE(NULLIF(ship_date, ''), '%Y-%m-%d') THEN 'SAME DAY DELIVERY'
+    ELSE 'VALID'
+END AS date_quality_flag
+FROM shipments; 
+
+-- Detect & Cap outliers using percentiles (IQR Method)
+
+-- ======================== for google BigQuery =========================
+With stats AS (
+	SELECT
+		APPROX.QUANTILES(freight_cost, 100)[OFFSET(25)] AS q1,
+        APPROX.QUANTILES(freight_cost, 100)[OFFSET(75)] AS q3
+	FROM shipments
+    WHERE freight_cost > 0
+),
+
+bounds AS (
+	SELECT
+		q1 - 1.5 * (q3 - q1) AS lower_bound,
+        q3 + 1.5 * (q3 - q1) AS upper_bound
+	FROM stats
+)
+SELECT
+shipment_id, freight_cost AS original_cost,
+CASE
+	WHEN freight_cost > (SELECT upper_bount from bounds) then (SELECT upper_bound from bounds)
+    WHEN freight_cost < (SELECT lower_bount from bounds) then (SELECT lower_bound from bounds)
+    ELSE freight_cost
+END AS cleaned_cost
+
+CASE
+	WHEN freight_cost > (SELECT upper_bount from bounds) OR freight_cost < (SELECT lower_bounds from bounds) then TRUE
+    ELSE FALSE
+END AS was_outlier
+FROM shipments;
+-- ======================== for google BigQuery =========================
+WITH ranked_data AS (
+    SELECT 
+        freight_cost,
+        PERCENT_RANK() OVER (ORDER BY freight_cost) AS pct
+    FROM shipments
+    WHERE freight_cost > 0
+),
+stat AS (
+    SELECT 
+        MAX(CASE WHEN pct <= 0.25 THEN freight_cost END) AS q1,
+        MIN(CASE WHEN pct >= 0.75 THEN freight_cost END) AS q3
+    FROM ranked_data
+),
+bounds AS (
+    SELECT 
+        q1,
+        q3,
+        (q1 - 1.5 * (q3 - q1)) AS lower_bound,
+        (q3 + 1.5 * (q3 - q1)) AS upper_bound
+    FROM stat
+)
+SELECT 
+    s.shipment_id,
+    s.freight_cost AS original_cost,
+    CASE 
+        WHEN s.freight_cost > b.upper_bound THEN b.upper_bound
+        WHEN s.freight_cost < b.lower_bound THEN b.lower_bound
+        ELSE s.freight_cost
+    END AS cleaned_cost,
+
+    CASE 
+        WHEN s.freight_cost > b.upper_bound OR s.freight_cost < b.lower_bound THEN TRUE
+        ELSE FALSE
+    END AS was_outlier
+
+FROM shipments s
+CROSS JOIN bounds b;
+										</code></pre>
+								<hr />	
+								<h2>Conclusion</h2>	
+									<p>The shipment dataset was cleaned and standardized in MySQL using a staging table to preserve the original data. Duplicate records were checked using the <code>ROW_NUMBER()</code> window function with <code>PARTITION BY</code>, while text fields were standardized with functions such as <code>TRIM()</code>, <code>UPPER()</code>, <code>LOWER()</code>, <code>SUBSTRING()</code>, <code>CONCAT()</code>, <code>SUBSTRING_INDEX()</code>, and <code>REGEXP_REPLACE()</code> to ensure consistent formatting.</p>
+									<p>Missing and invalid values were handled using <code>CASE</code>, <code>COALESCE()</code>, and <code>NULLIF()</code>, including blank fields and missing delivery or damage information. Numeric data was also validated by identifying negative and zero values in shipment weight, freight cost, and item count, with <code>ABS()</code> used to correct negative values. Additionally, shipment dates were validated using <code>STR_TO_DATE()</code> and <code>DATEDIFF()</code> to identify invalid or same-day deliveries. Finally, an IQR-based method using percentiles and <code>PERCENT_RANK()</code> was applied to identify and cap potential outliers in freight costs, improving the reliability of the dataset for further analysis.</p>			
+
+							</section>
+                           
+                            <!-- Footer -->
+							<footer>
+								<div class="pagination">
+									<a href="#" class="previous">Prev</a>
+									<a href="#" class="page active">1</a>
+									<a href="#" class="page">2</a>
+									<a href="#" class="page">3</a>
+									<span class="extra">&hellip;</span>
+									<a href="#" class="page">8</a>
+									<a href="#" class="page">9</a>
+									<a href="#" class="page">10</a>
+									<a href="#" class="next">Next</a>
+								</div>
+							</footer>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>вулиця Святошинська, 1, <br />
+									Київ, 03115</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="tel:+380671011875">(+380)67-101-1875</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:ikola2211@gmail.com">ikola2211@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<!--<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+									<li><a href="https://www.linkedin.com/in/ikola2211/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/ikola2211" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Herasymchuk</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+			<script>hljs.highlightAll();</script>
+
+	</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Python Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home Page</a></li>
+
+							<li>
+								<span class="opener" role="button" tabindex="0" aria-expanded="false">Projects Page</span>
+								<ul class="submenu">
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Python + Tableau</span>
+										<ul class="submenu">
+											<li><a href="Project_python_tableau_london.html">London Bike-Sharing Analysis</a></li>
+											<li><a href="Project_python_tableau_valencia.html">Valencia Real Estate Analytics</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">SQL</span>
+										<ul class="submenu">
+											<li><a href="Project_sql_sales_funnel.html">Sales Funnel Analysis</a></li>
+											<li><a href="Project_sql_data_cleaning_1.html">Data Cleaning SQL</a></li>
+											<li><a href="Project_sql_data_cleaning_2.html">Data Cleaning SQL</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Excel</span>
+										<ul class="submenu">
+											<li><a href="Project_excel_dashboard_1.html">Excel Dashboard</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">IDA</span>
+										<ul class="submenu">
+											<li><a href="Project_IDA_1.html">IDA ML Models</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Data Scraping</span>
+										<ul class="submenu">
+											<li><a href="Project_data_scraping_wikipedia.html">Data Scraping Wikipedia</a></li>
+											<li><a href="Project_data_scraping_crypto.html">Data Scraping Cryptocurrency</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							
+							<!-- <li class="active"><a href="generic.html">Project Page</a></li> -->
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+							<li><a href="Resume.html">Resume</a></li>
+						</ul>
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> 
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+							<li><a href="https://www.linkedin.com/in/mykola-herasymchuk-5783b026b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/ItseMario04?tab=projects" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">September 9, 2026</span>
+									<h1>Data cleaning in Python and Tableau visualization</h1>
+									<!--<p>Aenean ornare velit </p> -->
+								</header>
+								<!-- Blockquote -->
+								
+								<h2>Customer's Task</h2>
+									<blockquote>We want to understand how many people actually use bike-sharing in London over a certain period of time and under various weather conditions to understand what the future growth trend for this market looks like.</blockquote>
+								<hr />
+								<h2>Data acquisition</h2>
+									<p>Required data we could find in Kaggle's <a href="https://www.kaggle.com/datasets/hmavrodiev/london-bike-sharing-dataset">London bike sharing dataset</a> in csv format. </p>
+								<hr />
+								<h2>Python</h2>
+									<p>This data can easily be processed using Excel or SQL, but in this case, we will use the pandas library in Python. The Jupyter Notebook interactive development environment was used for this task. Raw data and .ipynb files could be found in this <a href="https://github.com/ItseMario04/Python_proje-ts/blob/f217b8a58c61868fa7f836a9c30c3af4e8b826b1/Python%2BTableau/London%20Riders/London_bikes.ipynb">GitHub repository</a>.</p>	
+									<p><a class="button icon solid fa-download" href="Python_code/London_bikes.ipynb" download="London_bikes.ipynb">Download Notebook</a></p>
+										<iframe class="notebook-render" src="Python_code/London_bikes.html" title="London bike-sharing notebook with saved outputs" loading="lazy"></iframe>
+										<script>
+											(function () {
+												var frame = document.querySelector('.notebook-render');
+												function resizeNotebook() {
+													frame.style.height = frame.contentDocument.documentElement.scrollHeight + 'px';
+												}
+												frame.addEventListener('load', resizeNotebook);
+												window.addEventListener('resize', resizeNotebook);
+										})();
+										</script>
+								<hr />
+										<!-- <pre><code class="language-python">import pandas as pd
+df = pd.read_csv(r"D:\Data_Analytics\Python\Portfolio\london_merged.csv")
+df
+
+df.info()
+
+df.weather_code.value_counts()
+
+df.season.value_counts()
+
+# specifying the column names that I want to use
+new_cols_dict ={
+    'timestamp':'time',
+    'cnt':'count', 
+    't1':'temp_real_C',
+    't2':'temp_feels_like_C',
+    'hum':'humidity_percent',
+    'wind_speed':'wind_speed_kph',
+    'weather_code':'weather',
+    'is_holiday':'is_holiday',
+    'is_weekend':'is_weekend',
+    'season':'season'
+}
+
+df.rename(new_cols_dict, axis=1, inplace=True)
+df
+
+df.humidity_percent = df.humidity_percent / 100
+
+# creating a season dictionary so that we can map the integers 0-3 to the actual written values
+season_dict = {
+    '0.0':'spring',
+    '1.0':'summer',
+    '2.0':'autumn',
+    '3.0':'winter'
+}
+
+# creating a weather dictionary so that we can map the integers to the actual written values
+weather_dict = {
+    '1.0':'Clear',
+    '2.0':'Scattered clouds',
+    '3.0':'Broken clouds',
+    '4.0':'Cloudy',
+    '7.0':'Rain',
+    '10.0':'Rain with thunderstorm',
+    '26.0':'Snowfall'
+}
+
+# changing the seasons column data type to string
+df.season = df.season.astype('str')
+# mapping the values 0-3 to the actual written seasons
+df.season = df.season.map(season_dict)
+
+# changing the weather column data type to string
+df.weather = df.weather.astype('str')
+# mapping the values to the actual written weathers
+df.weather = df.weather.map(weather_dict)
+
+df.head(10)
+
+df.to_excel(r'D:\Data_Analytics\Python\Portfolio\london_bikes_final.xlsx', sheet_name='Data')
+</code></pre>
+									<hr /> -->
+
+								<h2>Tableau</h2>
+									<p>Working in Tableau it`s prety intuitive and almost self-explanatory when working with clean data. But for learning purposes I'l explain whole process in detail. Also this project was heavily inspired by <a href="https://youtu.be/nl9eZl1IOKI?si=-oto4AObB8weJuLZ">Mo Chen</a> project.</p>									
+									<div class="image main"><img src="images/Tableau_london_bikes.png" alt="" /></div>
+									<ul class="actions">
+											<li><a href="https://public.tableau.com/views/LondonBikeRides_17889033876680/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" class="button primary icon solid fa-search">Look by yourself</a></li>
+										</ul>
+									<!-- <span class="image right"><img src="images/Tableau_join.png" alt="" /></span> -->
+									<h3>Creating User-Defined Parameters</h3>
+										<p>To start, create two parameters to make the moving average dynamic. Right-click anywhere in the Data pane and select Create Parameter. Name the first parameter <code>moving average period</code>, set the data type to String, and choose a List allowable values configuration with three items: <code>day, week</code>, and <code>month</code>.</p>
+										<p>Next, create the second parameter named <code>moving average duration</code>. Set its data type to Integer and set the current value to <code>10</code>. Once both parameters are created, right-click on each of them in the Data pane and select Show Parameter.</p>
+									<h3>Preparing Date Field and Basic Line Chart</h3>
+										<p>Locate the <code>time</code> field in your Data pane. If it is currently set to a string type (indicated by an ABC icon), right-click it, go to Change Data Type, and select Date.</p>
+										<p>Now, create a new calculated field named <code>moving average period</code> using the formula <code>DATETRUNC([moving average period], [time])</code>. Change its data type to Date if necessary. Right-click and drag this new <code>moving average period</code> field into the Columns shelf, setting it to Continuous. Drag <code>Count</code> (or your measure count) onto the Rows shelf to build a simple line chart.</p>
+									<h3>Set Up the Set and Range Calculations</h3>	
+										<p>Right-click the <code>moving average period</code> measure, go to Create, and select Set. Name it <code>moving average period set</code> and click OK without selecting any values for now.</p>
+										<p>Create a calculated field named <code>Min month</code> using the formula <code>{ MIN(IF [moving average period set] THEN [moving average period] END) }</code>. Duplicate this field, rename it to <code>Max month</code>, and edit its formula to replace <code>MIN</code> with <code>MAX</code>. Drag both <code>Min month</code> and <code>Max month</code> onto the Detail shelf on the Marks card, ensuring both are set to Continuous. Finally, right-click <code>moving average period set</code> in the Data pane and select Show Set.</p>
+									<h3>Configure Worksheet Actions and Highlight Visuals</h3>	
+										<p>Go to the top menu, select Worksheet > Actions, and add a Change Set Values action. Name it <code>update moving average period set</code>, target your <code>moving average period set</code>, and set the option for clearing the selection to Keep set values.</p>
+										<p>To highlight selected ranges visually, switch to the Analytics tab on the left, drag Reference Band onto the chart target table, and base it on <code>moving average period</code>. Set Band From to <code>Min month</code> and Band To to <code>Max month</code> (removing all labels and tooltips). Customize the band using a dashed line with a light fill color, and uncheck Show recalculated value.</p>
+										<p>To color-code the selected range, create a calculated field named <code>in range</code> with the expression <code>[moving average period] >= [Min month] AND [moving average period] <= [Max month]</code>. Convert this field to a measure attribute by dragging it to the Color shelf, clicking its drop-down menu, and selecting Attribute.</p>
+									<h3>Implement Dynamic Moving Average</h4>	
+										<p>To transform your count into a moving average, click the drop-down on the <code>SUM(Count)</code> field in the Rows shelf, select Quick Table Calculation, and choose Moving Average. Drag this field back into the Data pane to create a reusable measure and name it <code>moving average rights</code>.</p>
+										<p>Right-click and edit <code>moving average rights</code> to make the calculation dynamic. Modify the window calculation formula so that the offset uses your parameter: replace the fixed value with <code>-[moving average duration] + 1</code>. Test your setup by altering the duration and period parameter controls to confirm the chart updates smoothly.</p>
+									<h3>Build Total Rides Summary Worksheet</h3>	
+										<p>Rename your primary sheet to <code>Moving Average</code> and open a new worksheet named <code>Total rides</code>. Create a calculated field called <code>in range rights</code> using the formula <code>{ SUM(IF [in range] THEN [Count] END) }</code>.</p>
+										<p>Drag <code>in range</code> into the Filters shelf and select True. Add <code>Min month</code> and <code>Max month</code> to the Detail shelf as Continuous fields. Place <code>in range rights</code> onto the Text/Label shelf. Edit the worksheet title to show dynamic text: <code>London bike rides between Min month and Max month</code>.</p>
+									<h3>Build Temperature vs. Wind Speed Heat Map</h3>	
+										<p>Create a new worksheet named <code>Heatmap</code>. To group dense continuous variables, right-click <code>temperature real</code>, select Create Bins, and name it <code>temp c</code>. Do the same for <code>wind speed kph</code>, naming the bin field <code>wind in kph</code>.</p>
+										<p>Drag <code>wind in kph</code> to Columns and <code>temp c</code> to Rows. Drag <code>Count</code> to the Color shelf, change the mark type on the Marks card to Square, and set the view layout to Entire View. Apply the same filters by dragging <code>in range</code> (set to True), <code>Min month</code>, and <code>Max month</code> onto the appropriate shelves, then drag <code>Count</code> to the Label shelf.</p>
+									<h3>Creating Tooltip Breakdown Charts</h3>	
+										<p>Open a new worksheet named <code>2D weather</code>. Drag <code>weather</code> to Rows and <code>Count</code> to Columns, sort in descending order, set to Entire View, and place <code>weather</code> on Color. Add the <code>in range</code> filter (True) alongside <code>Min month</code> and <code>Max month</code> on Detail, then turn on labels.</p>
+										<p>Open another worksheet named <code>Hour</code>. Drag <code>time</code> to Rows (set to Discrete Hour) and <code>Count</code> to Columns, set the mark type to Bar, set to Entire View, and place <code>time</code> on Color. Apply the same <code>in range</code>, <code>Min month</code>, and <code>Max month</code> filters, then enable labels.</p>
+									<h3>Format Worksheets and Insert Tooltip Visuals</h3>	
+										<p>Format the background shading, borders, and line properties across all worksheets to maintain a clean appearance. For your <code>Moving Average</code> sheet, edit the primary line colors for true/false states, adjust the reference band fill, and set the worksheet title dynamically using your parameters: <code> < moving average duration> < moving average period> </code> moving average.</p>
+										<p>Navigate to the <code>Moving Average</code> sheet's Tooltip card. Remove unnecessary technical fields, keep the primary date and measure info, and insert the two breakdown charts via Insert > Sheets (<code>2D weather</code> at 300x240 and <code>Hour</code> at 300x400). Repeat this tooltip insertion for the <code>Heatmap</code> worksheet so both breakdown charts appear when hovering over heatmap squares.</p>
+									<h3>Assemble and Interlink the Final Dashboard</h3>	
+										<p>Create a new Dashboard, set its size to Fixed Size (Generic Desktop), and set the dashboard background color. Drag <code>Total rides</code>, <code>Moving Average</code>, and <code>Heatmap</code> into the layout. Set the <code>moving average duration</code> and <code>moving average period</code> parameter controls to Floating and place them neatly near the top.</p>
+										<p>Go to Dashboard > Actions and add or edit the set action: set the source sheet to <code>Dashboard 1</code> (specifically targeting the Moving Average sheet) and the target set to <code>moving average period set</code>. Finally, display the <code>moving average period</code> date range filter on the dashboard as a floating control. Verify that selecting time windows on the timeline or adjusting parameter inputs dynamically updates all totals, heatmaps, and embedded tooltips across the dashboard.</p>
+									<hr />
+
+							</section>
+                           
+                            <!-- Footer -->
+							<footer>
+								<div class="pagination">
+									<a href="#" class="previous">Prev</a>
+									<a href="#" class="page active">1</a>
+									<a href="#" class="page">2</a>
+									<a href="#" class="page">3</a>
+									<span class="extra">&hellip;</span>
+									<a href="#" class="page">8</a>
+									<a href="#" class="page">9</a>
+									<a href="#" class="page">10</a>
+									<a href="#" class="next">Next</a>
+								</div>
+							</footer>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>вулиця Святошинська, 1, <br />
+									Київ, 03115</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="tel:+380671011875">(+380)67-101-1875</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:ikola2211@gmail.com">ikola2211@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<!--<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+									<li><a href="https://www.linkedin.com/in/ikola2211/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/ikola2211" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Herasymchuk</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

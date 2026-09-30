@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Valencia Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/vs2015.min.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home Page</a></li>
+							<li>
+								<span class="opener" role="button" tabindex="0" aria-expanded="false">Projects Page</span>
+								<ul class="submenu">
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Python + Tableau</span>
+										<ul class="submenu">
+											<li><a href="Project_python_tableau_london.html">London Bike-Sharing Analysis</a></li>
+											<li><a href="Project_python_tableau_valencia.html">Valencia Real Estate Analytics</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">SQL</span>
+										<ul class="submenu">
+											<li><a href="Project_sql_sales_funnel.html">Sales Funnel Analysis</a></li>
+											<li><a href="Project_sql_data_cleaning_1.html">Data Cleaning SQL</a></li>
+											<li><a href="Project_sql_data_cleaning_2.html">Data Cleaning SQL</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Excel</span>
+										<ul class="submenu">
+											<li><a href="Project_excel_dashboard_1.html">Excel Dashboard</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">IDA</span>
+										<ul class="submenu">
+											<li><a href="Project_IDA_1.html">IDA ML Models</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Data Scraping</span>
+										<ul class="submenu">
+											<li><a href="Project_data_scraping_wikipedia.html">Data Scraping Wikipedia</a></li>
+											<li><a href="Project_data_scraping_crypto.html">Data Scraping Cryptocurrency</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							
+							<!-- <li class="active"><a href="generic.html">Project Page</a></li> -->
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+							<li><a href="Resume.html">Resume</a></li>
+						</ul>
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> 
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+							<li><a href="https://www.linkedin.com/in/mykola-herasymchuk-5783b026b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/ItseMario04?tab=projects" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">August 30, 2026</span>
+									<h1>Data cleaning in Python and Tableau visualization</h1>
+									<!--<p>Aenean ornare velit </p> -->
+								</header>
+								<!-- Blockquote -->
+									<h2>Customer's Task</h2>
+									<blockquote>I would like to purchase a property in Valencia, Spain, to rent it out.
+
+It`s should be possible to determine whether it would be worthwhile to pay extra for a property with more rooms, or whether the additional cost would not be justified.
+
+I would also like to find out how much rooms are rented for in different parts of the city.
+
+Additionally, i would like to analyze the number of bookings per host to understand how many bookings I can expect as a potential host. </blockquote>
+									<hr />
+									<h2>Where to find data?</h2>
+										<p><span class="image right"><img src="images/Inside_Airbnb.png" alt="" /></span>To find required data we could use the <a href="https://insideairbnb.com/get-the-data/">Inside Airbnb</a> dataset for Valencia, Spain. It`s usefull because this dataset official from Airbnb and regularly updated. For our purposes we will download the detailed Listings, Calendar and Review data in csv format. Other data acquisition methods include data scraping and API extraction. Examples of these methods can be found at the <a href="https://github.com/ItseMario04/Python_proje-ts/tree/main/Data%20Scraping%20and%20API%20Extraction">link</a>. </p>
+									<hr />
+									<h2>Opening the DataSet</h2>
+										<p>Usualy in data analitics we are working with .txt, .csv and .json files format and most of the software supports these formats. Sometimes data set is not compiling automaticly, so that why we should specify: field separator (delimiter) is usualy a comma (,); encoding 65001: Unicode (UTF-8); text qualifier is usualy double quotes ("); Regional settings for decimal separator.  </p>
+									<hr />
+									<h2>Python</h2>
+										<p>This data can easily be processed using Excel or SQL, but in this case, we will use the pandas library in Python. The Jupyter Notebook interactive development environment was used for this task. Raw data and .ipynb files could be found in this <a href="https://github.com/ItseMario04/Python_proje-ts/blob/5dd92c63d9673f6745d9c4aa4e28af0a170b273b/Python%2BTableau/Valencia%20Airbnb%20Analysis/valencia.ipynb">GitHub repository</a></p>	
+										<p><a class="button icon solid fa-download" href="Python_code/valencia.ipynb" download="Valencia_Airbnb.ipynb">Download Notebook</a></p>
+											<iframe class="notebook-render" src="Python_code/valencia.html" title="Valencia Airbnb analysis notebook with saved outputs" loading="lazy"></iframe>
+											<script>
+												(function () {
+													var frame = document.querySelector('.notebook-render');
+													function resizeNotebook() {
+														frame.style.height = frame.contentDocument.documentElement.scrollHeight + 'px';
+													}
+													frame.addEventListener('load', resizeNotebook);
+													window.addEventListener('resize', resizeNotebook);
+											})();
+											</script>
+									<hr />
+										<!-- <pre><code>import pandas as pd
+df = pd.read_csv(r"D:\Data_Analytics\Python\Portfolio\listings.csv")
+pd.set_option('display.max.columns', 200)
+pd.set_option('display.max.rows', 15)
+df
+
+df.info()
+
+df = df.drop_duplicates()
+df = df.drop(columns = ['instant_bookable', 'calendar_updated', 'neighbourhood', 'host_verifications', 
+'host_total_listings_count', 'host_neighbourhood', 'host_thumbnail_url', 'host_acceptance_rate', 
+'host_response_rate', 'host_response_time', 'host_since', 'neighborhood_overview'])
+
+df.info()
+
+df.isnull().sum()
+
+df.nunique()
+
+df["name"] = df["name"].str.strip("123._/★")
+df["host_name"] = df["host_name"].str.strip("123._/")
+df
+
+df=df.fillna('')
+df
+
+#for x in df.index:
+#    if df.loc[x, "host_location"] != 'Valencia, Spain':
+#        df.loc(x, 'host_location') = 'Valencia, Spain'
+df.loc[df["host_location"] != "Valencia, Spain", "host_location"] = ("Valencia, Spain")
+df
+
+#df2 = pd.read_csv(r"D:\Data_Analytics\Tableau\Portfolio\calendar.csv")
+#df.merge(df2, how = 'inner', on = ['id', 'listing_id'])
+#df.to_excel(r"D:\Data_Analytics\Python\Portfolio\listings.xlsx", index = False)
+price = pd.to_numeric(df["price_quote_price_per_night"], errors="coerce")
+price
+
+price.dropna.plot(kind="hist")
+type(df['price_quote_price_per_night'])
+#df.plot.bar(x = 'neighbourhood_cleansed', y = 'price_quote_price_per_night')
+</code></pre> -->
+									<hr />
+									<h2>MySQL</h2>
+										<p>The pandas library in Python is highly flexible and can automatically overlook or correct minor CSV syntax errors, whereas traditional parsers (such as those in MySQL Workbench or older versions of Excel) fail immediately.  </p>
+										<p><span class="image left"><img src="images/Notepad.png" alt="" /></span>If you simply load that same CSV file into MySQL Workbench or older versions of Excel, you will notice that the file fails to parse correctly after the fourth row, or the formatting breaks (the data "shifts") in the case of Excel. We can use Notepad++ to identify the issue. First, we can check the file's encoding in the bottom-right corner. Second, by enabling the "View → Show Symbol → Show All Characters" option, we can see CR LF or LF markers, which should only appear at the end of a line. If CR LF markers appear in the middle of an address or comment - that is the cause of the line breaks.</p>
+										<p>In other projects we will use MS SQL or Google BigQuery where this will no longer be an issue but for now let see the execution in MySQL Workbench. The standard MySQL Workbench GUI wizard cannot handle this file. You need to use the direct "LOAD DATA INFILE" SQL query, but first, you must replace all internal line breaks with spaces or tags using Python.</p>
+<pre><code># Python
+import pandas as pd
+df = pd.read_csv(r'D:\Data_Analytics\MySQL\Portfolio\listings.csv', low_memory=False)
+df = df.replace(r'[\r\n]+', ' ', regex=True)
+df.to_csv(r'D:\Data_Analytics\MySQL\Portfolio\listings_for_mysql.csv', 
+index=False, encoding='utf-8', quoting=1)
+</code></pre>
+<pre><code class="language-sql">-- MySQL
+SELECT *
+FROM valencia.listings;
+
+CREATE TABLE listing_staging
+LIKE valencia.listings;
+
+SELECT *
+FROM valencia.listing_staging;
+
+LOAD DATA INFILE 'D:/Data_Analytics/MySQL/Portfolio/listings_for_mysql.csv'
+INTO TABLE valencia.listing_staging
+-- CHARACTER SET utf8mb4
+FIELDS TERMINATED BY ',' 
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+</code></pre>
+									<hr />	
+									<h2>Tableau</h2>
+									<div class="image main"><img src="images/Tableau_valencia.png" alt="" /></div>
+									<ul class="actions">
+											<li><a href="https://public.tableau.com/views/valencia_17883012197650/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" class="button primary icon solid fa-search">Look by yourself</a></li>
+										</ul>
+									<p><span class="image right"><img src="images/Tableau_join.png" alt="" /></span>Working in Tableau it`s prety intuitive and almost self-explanatory when working with clean data. In our case the only thing that has been done is joining the table by id. </p>									
+									<hr />
+
+									<!--<h2>SQL</h2>
+										<p>something</p>	
+									<pre><code>import pandas as pd
+df = pd.read_csv(r"D:\Data_Analytics\Python\Portfolio\listings.csv")
+df
+</code></pre> 
+								<h1>Another Full project with different executions</h1>
+								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sapien risus, commodo eget turpis at, elementum convallis enim turpis, lorem ipsum dolor sit amet nullam.</p>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus. Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum.</p>
+							</section> -->
+						
+						<!-- Footer -->
+							<footer>
+								<div class="pagination">
+									<a href="#" class="previous">Prev</a>
+									<a href="#" class="page active">1</a>
+									<a href="#" class="page">2</a>
+									<a href="#" class="page">3</a>
+									<span class="extra">&hellip;</span>
+									<a href="#" class="page">8</a>
+									<a href="#" class="page">9</a>
+									<a href="#" class="page">10</a>
+									<a href="#" class="next">Next</a>
+								</div>
+							</footer> 
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>вулиця Святошинська, 1, <br />
+									Київ, 03115</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="tel:+380671011875">(+380)67-101-1875</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:ikola2211@gmail.com">ikola2211@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<!--<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+									<li><a href="https://www.linkedin.com/in/ikola2211/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/ikola2211" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Herasymchuk</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+			<script>hljs.highlightAll();</script>
+
+	</body>
+</html>

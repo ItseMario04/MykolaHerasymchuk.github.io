@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Excel Dashboard Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Portfolio</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home Page</a></li>
+
+							<li>
+								<span class="opener" role="button" tabindex="0" aria-expanded="false">Projects Page</span>
+								<ul class="submenu">
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Python + Tableau</span>
+										<ul class="submenu">
+											<li><a href="Project_python_tableau_london.html">London Bike-Sharing Analysis</a></li>
+											<li><a href="Project_python_tableau_valencia.html">Valencia Real Estate Analytics</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">SQL</span>
+										<ul class="submenu">
+											<li><a href="Project_sql_sales_funnel.html">Sales Funnel Analysis</a></li>
+											<li><a href="Project_sql_data_cleaning_1.html">Data Cleaning SQL</a></li>
+											<li><a href="Project_sql_data_cleaning_2.html">Data Cleaning SQL</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Excel</span>
+										<ul class="submenu">
+											<li><a href="Project_excel_dashboard_1.html">Excel Dashboard</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">IDA</span>
+										<ul class="submenu">
+											<li><a href="Project_IDA_1.html">IDA ML Models</a></li>
+										</ul>
+									</li>
+									<li class="has-submenu">
+										<span class="opener" role="button" tabindex="0" aria-expanded="false">Data Scraping</span>
+										<ul class="submenu">
+											<li><a href="Project_data_scraping_wikipedia.html">Data Scraping Wikipedia</a></li>
+											<li><a href="Project_data_scraping_crypto.html">Data Scraping Cryptocurrency</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							
+							<!-- <li class="active"><a href="generic.html">Project Page</a></li> -->
+							<!-- <li><a href="elements.html">Elements Reference</a></li> -->
+							<li><a href="Resume.html">Resume</a></li>
+						</ul>
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> 
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+							<li><a href="https://www.linkedin.com/in/mykola-herasymchuk-5783b026b" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/ItseMario04?tab=projects" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">September 09, 2026</span>
+									<h1>Excel Dashboard</h1>
+									<!--<p>Aenean ornare velit </p> -->
+								</header>
+								<!-- Blockquote -->
+								 	<h2>Customer's Task</h2>
+										<blockquote>For our coffee company, it is important to identify which of our coffee varieties generate the highest demand. We also need to understand our customers—specifically, who is buying and in what quantities—as well as determine where our business is strongest and where we should expand next. Additionally, we would like to express our appreciation to our largest clients.</blockquote>
+									<h2>Excel Dashboard</h2>
+										<p>Excel proficiency is the standard for working with data. The ability to perform data cleaning and Exploratory Data Analysis (EDA), as well as build interactive dashboards, is an essential skill for a data analyst. To demonstrate actual proficiency and an understanding of working with Excel, this project utilized functions such as XLOOKUP, INDEX MATCH, multiplication formulas, and multiple IF functions, alongside skills in date and number formatting and duplicate checking.</p>
+										<p>This project could be found in the <a href="https://github.com/ItseMario04/Excel/tree/008f37bb8135e985cc6e7fd813d3a61a944c0d23/CoffeeOrders_Project">GitHub repository</a>. And also this project was heavily inspired by <a href="https://youtu.be/m13o5aqeCbM?si=hS07ANZF0HcwgTEL">Mo Chen</a> video.</p>
+										<div class="image main"><img src="images/Excel_project.png" alt="" /></div>
+											<ul class="actions">
+												<li><a href="coffeeOrders_Project.xlsx" download="coffeeOrders_Project.xlsx" class="button icon solid fa-download">Download Excel File</a></li>
+											</ul>
+										<h3>Description of the Data Analysis Process</h3>
+											<p>Let's go through the data that we'll be working with. This is a dataset on coffee bean sales. We have the Order ID column, Order Date, Customer ID, Product ID, and Quantity already populated. Now, we have a couple of columns, column F to M, where the data is not populated. There are going to be times when the data sits in different tables and you'll have to do lookups to get your data. This is exactly what we'll be doing. We're going to be gathering our data first. We have two other tables: the Customers table and the Products table.</p>
+											<p>The Customers table contains all of the customer information. The unique key or the primary key here is the Customer ID. Row 2 belongs to a customer named Louisiana Owner, and they have email addresses, phone numbers, address lines, city, country, postcode, and loyalty card status.</p>
+											<p>Moving on to the next tab, which is the Products table, we have Product ID as the primary key, coffee type, roast type, size, unit price, price per 100 grams, and the profit associated with it. We'll be looking up these values first and then returning to our Orders table.</p>
+											<p>We'll gather the customer data using the XLOOKUP formula, and then we'll be using the traditional INDEX MATCH to gather the product data. INDEX MATCH in this case will be really good because it will be dynamic. I'll write only one formula for the products that I want to look up, and I'll be able to populate all of the columns, whereas for XLOOKUP I'll actually have to repeat my formula three times: once for customer name, once for email, and once for country.</p>
+											<p>Click into cell F2 and start typing XLOOKUP. Hit Tab to auto-populate the formula. Select the lookup value, which is Customer ID in cell C2. Then go to the Customers worksheet to select the lookup array, which is the Customer ID column (column A). Select everything using Ctrl+Shift+Down and press F4 to lock in the range with dollar signs. Next, select the return array. For Customer Name, click into cell B2 on the Customers sheet, select down, and press F4 again. Set if_not_found to empty, match mode to exact match (0), close the brackets, and hit enter. Double-click the bottom right corner (the fill handle) of cell F2 to auto-populate all customer names.</p>
+											<p>For the Email column in cell G2, do the exact same with XLOOKUP. Select Customer ID as the lookup value, the Customer ID column in the Customers table as the lookup array (locked with F4), and column C (Email) as the return array (locked with F4). If there are blank emails, XLOOKUP will return a zero. To fix this, wrap the formula in an IF statement: if the XLOOKUP result equals zero, return an empty string, otherwise return the XLOOKUP value.</p>
+											<p>For the Country column in cell H2, use XLOOKUP with Customer ID as the lookup value, Customer ID column as the lookup array, and Country column (column G) in the Customers sheet as the return array (locked with F4). Set match mode to exact match (0) and double-click to auto-populate.</p>
+											<p>Now move on to the product information using INDEX MATCH. Place one dynamic formula in cell I2, then drag it right and down to populate all product columns.</p>
+											<p>In cell I2, enter INDEX. For the array, select the full dataset range in the Products worksheet and lock it with F4. For the row number, use the MATCH function: match the Product ID from the Orders table (fixing the column reference so it remains on column D) against column A in the Products sheet (locked with F4) with exact match (0). For the column number, use a second MATCH function: match the header name (cell I1 in Orders, locking the row reference to row 1) against the header row in the Products sheet (locked with F4) with exact match (0). Close all brackets and hit Enter. Drag this formula across to populate Roast Type, Size, and Unit Price, then double-click down to populate all rows.</p>
+											<p>To populate the Sales column in column M, multiply Unit <code>Price by Quantity: = Unit Price * Quantity</code>. Double-click to auto-populate.</p>
+											<p>Create a new column named Coffee Type Name in column N to convert abbreviated coffee types into full names using nested IF functions: if cell I2 equals "ROB", return "Robusta"; if "EXE", return "Excelsa"; if "ARA", return "Arabica"; if "LIB", return "Liberica". Auto-populate down.</p>
+											<p>Create another column named Roast Type Name in column O to convert single letters into full roast names using nested IF functions: if cell J2 equals "M", return "Medium"; if "L", return "Light"; if "D", return "Dark". Auto-populate down.</p>
+											<p>Format the Order Date column (column B) using Custom formatting: select range, press Ctrl+1, choose Custom, and set format to DD-MMM-YYYY.</p>
+											<p>Format the Size column (column K) to show kilograms: select range, press Ctrl+1, choose Custom, and set format to 0.0 "kg".</p>
+											<p>Format the Unit Price and Sales columns as currency in US Dollars from the Home tab.</p>
+											<p>Check for duplicate values: select the entire dataset, go to the Data tab, and click Remove Duplicates.</p>
+											<p>Convert the range into an Excel Table using the shortcut Ctrl+T. Rename the table to "OrdersTable" under the Table Design tab and choose a clean table style.</p>
+											<p>Insert a Pivot Table using the shortcut Alt+N+V+T (or Insert > Pivot Table) to begin analysis and build pivot charts for total sales.</p>
+							</section>
+                           
+                            <!-- Footer -->
+							<footer>
+								<div class="pagination">
+									<a href="#" class="previous">Prev</a>
+									<a href="#" class="page active">1</a>
+									<a href="#" class="page">2</a>
+									<a href="#" class="page">3</a>
+									<span class="extra">&hellip;</span>
+									<a href="#" class="page">8</a>
+									<a href="#" class="page">9</a>
+									<a href="#" class="page">10</a>
+									<a href="#" class="next">Next</a>
+								</div>
+							</footer>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>вулиця Святошинська, 1, <br />
+									Київ, 03115</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="tel:+380671011875">(+380)67-101-1875</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:ikola2211@gmail.com">ikola2211@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<!--<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li> -->
+									<li><a href="https://www.linkedin.com/in/ikola2211/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/ikola2211" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; Herasymchuk</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
